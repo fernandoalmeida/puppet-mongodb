@@ -1,0 +1,8 @@
+name         'fernandoalmeida-mongodb'
+version      '0.0.1'
+source       'https://github.com/fernandoalmeida/puppet-mongodb.git'
+author       'Fernando Almeida'
+license      'Apache License, Version 2.0'
+summary      'A Puppet module for installing and configuring MongoDB'
+description  'A Puppet module for installing and configuring MongoDB'
+project_page 'https://github.com/fernandoalmeida/puppet-mongodb'

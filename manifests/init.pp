@@ -18,12 +18,12 @@
 #
 class mongodb {
   
-  exec {"apt-key":
+  exec {"mongodb-apt-key":
     command => "apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10",
     unless  => "apt-key list | grep 10gen",
   }
   
-  file {'10gen.list':
+  file {'mongodb-10gen.list':
     ensure  => file,
     path    => '/etc/apt/sources.list.d/10gen.list',
     content => 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen',
@@ -31,7 +31,8 @@ class mongodb {
     notify  => Exec['apt-get update'],
   }
   
-  exec {'apt-get update':
+  exec {'mongodb-apt-get-update':
+    command     => "apt-get update"
     refreshonly => true,
     require     => [ Exec['apt-key'], File['10gen.list'] ],
   }

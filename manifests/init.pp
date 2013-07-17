@@ -27,19 +27,19 @@ class mongodb {
     ensure  => file,
     path    => '/etc/apt/sources.list.d/10gen.list',
     content => 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen',
-    require => Exec['apt-key'],
-    notify  => Exec['apt-get update'],
+    require => Exec['mongodb-apt-key'],
+    notify  => Exec['mongodb-apt-get-update'],
   }
   
   exec {'mongodb-apt-get-update':
     command     => "apt-get update"
     refreshonly => true,
-    require     => [ Exec['apt-key'], File['10gen.list'] ],
+    require     => [ Exec['mongodb-apt-key'], File['mongodb-10gen.list'] ],
   }
   
   package {'mongodb-10gen':
     ensure  => installed,
-    require => [ Exec['apt-key'], File['10gen.list'] ],
+    require => [ Exec['mongodb-apt-key'], File['mongodb-10gen.list'] ],
   }
   
   service {'mongodb':

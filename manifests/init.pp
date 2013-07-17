@@ -32,7 +32,7 @@ class mongodb {
   }
   
   exec {'mongodb-apt-get-update':
-    command     => "apt-get update"
+    command     => "apt-get update",
     refreshonly => true,
     require     => [ Exec['mongodb-apt-key'], File['mongodb-10gen.list'] ],
   }
